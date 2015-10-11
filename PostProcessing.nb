@@ -1,0 +1,282 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      9987,        273]
+NotebookOptionsPosition[      9458,        253]
+NotebookOutlinePosition[      9804,        268]
+CellTagsIndexPosition[      9761,        265]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+  "workingFolder", " ", "=", " ", 
+   "\"\<C:\\\\Users\\\\Fatima\\\\Dropbox\\\\!!Research\\\\FR_Experiment\\\\\
+ORLExperiment\\\\\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dataFolder", " ", "=", " ", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{"workingFolder", ",", "\"\<RacahMomentExp\\\\Results\\\\\>\""}], 
+     "}"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.6484043847878313`*^9, 3.64840439129117*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", "dataFolder", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fullyFused", " ", "=", " ", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<fullyFused.dat\>\"", ",", " ", "\"\<List\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"partiallyFused", " ", "=", " ", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<partiallyFused.dat\>\"", ",", " ", "\"\<List\>\""}], "]"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"crossValidated", " ", "=", " ", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<crossValidation.dat\>\"", ",", " ", "\"\<List\>\""}], 
+    "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.648404584878343*^9, 3.648404699353731*^9}, 
+   3.648404775526557*^9, {3.6484053386122894`*^9, 3.648405354869137*^9}, {
+   3.6485728659956565`*^9, 3.648572866410934*^9}, {3.6485744992444725`*^9, 
+   3.6485745266297474`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"For", " ", 
+    RowBox[{"fullyfused", ".", "dat"}], " ", "we", " ", "need", " ", "to", 
+    " ", "used", " ", "the", " ", "following", " ", 
+    RowBox[{"regez", ":", " ", "\"\<\\\\+\\\\s\\\\d{1,3}\>\""}]}], " ", 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"GetHits", "[", "str_", "]"}], " ", ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"s", ",", "e"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"s", ",", "e"}], "}"}], " ", "=", " ", 
+       RowBox[{"First", "[", 
+        RowBox[{"StringPosition", "[", 
+         RowBox[{"str", ",", 
+          RowBox[{"RegularExpression", "[", "\"\<\\\\d{1,3}\>\"", "]"}]}], 
+         "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", 
+       RowBox[{"ToExpression", "[", 
+        RowBox[{"StringTake", "[", 
+         RowBox[{"str", ",", " ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"s", "+", "1"}], ",", "e"}], "}"}]}], "]"}], "]"}], "]"}],
+       ";"}]}], "\[IndentingNewLine]", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.6485720321742706`*^9, 3.648572036007829*^9}, {
+   3.6485721157680526`*^9, 3.648572186658353*^9}, {3.6485725222022533`*^9, 
+   3.648572529782311*^9}, 3.6485780694707785`*^9, {3.648578104188946*^9, 
+   3.6485781345251875`*^9}, {3.648578369058685*^9, 3.6485783777064543`*^9}, {
+   3.648578412786863*^9, 3.64857841621015*^9}, {3.6488458137322226`*^9, 
+   3.6488458441225014`*^9}, {3.648845908476441*^9, 3.648845948368061*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"hitRate", " ", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"GetHits", " ", "/@", " ", "fullyFused"}], " ", "/", "2"}], ",",
+      "3"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<FullyFused.xlsx\>\"", ",", "hitRate"}], "]"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.648572215429553*^9, 3.648572296757821*^9}, {
+   3.648572432079117*^9, 3.648572461731904*^9}, {3.648572583764332*^9, 
+   3.6485726387960515`*^9}, 3.6488457508322515`*^9, {3.6488458548326483`*^9, 
+   3.648845886512787*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"partiallyFused", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"StringSplit", "[", 
+      RowBox[{
+       RowBox[{"partiallyFused", "[", 
+        RowBox[{"[", "#", "]"}], "]"}], ",", 
+       RowBox[{
+       "RegularExpression", "[", "\"\<\\\\s?\\\\d{1,3}\\\\*False\>\"", 
+        "]"}]}], "]"}], " ", "&"}], " ", "/@", " ", 
+    RowBox[{"Range", "[", "40", "]"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"hitRate", " ", "=", " ", 
+   RowBox[{"N", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"GetHits", " ", "/@", " ", 
+         RowBox[{"partiallyFused", "[", 
+          RowBox[{"[", "#", "]"}], "]"}]}], " ", "&"}], "/@", 
+       RowBox[{"Range", "[", "40", "]"}]}], "/", "2"}], ",", "3"}], "]"}]}], 
+  " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<PartiallyFused.xlsx\>\"", ",", "hitRate"}], "]"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.648572815142723*^9, 3.6485728442101173`*^9}, {
+   3.6485728764416265`*^9, 3.6485730154353724`*^9}, {3.648573452101747*^9, 
+   3.6485735135447464`*^9}, {3.6485736596612463`*^9, 
+   3.6485736887086277`*^9}, {3.6485737464851804`*^9, 3.648573768236695*^9}, {
+   3.648573899532304*^9, 3.6485739021780696`*^9}, 3.6485745558252273`*^9, {
+   3.648581093416567*^9, 3.6485810953998904`*^9}, {3.648842299940575*^9, 
+   3.6488423023471813`*^9}, {3.648844364746357*^9, 3.6488444019571877`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"crossValidated", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"StringSplit", "[", 
+      RowBox[{
+       RowBox[{"crossValidated", "[", 
+        RowBox[{"[", "#", "]"}], "]"}], " ", ",", 
+       RowBox[{"RegularExpression", "[", "\"\<{*}\>\"", "]"}]}], "]"}], " ", 
+     "&"}], " ", "/@", 
+    RowBox[{"Range", "[", "40", "]"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"splitByComma", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"StringSplit", "[", 
+      RowBox[{
+       RowBox[{"crossValidated", "[", 
+        RowBox[{"[", 
+         RowBox[{"i", ",", "j"}], "]"}], "]"}], ",", " ", "\"\<,\>\""}], 
+      "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "40"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"j", ",", "10"}], "}"}]}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.6485745631681285`*^9, 3.6485745701657953`*^9}, {
+   3.648574610052413*^9, 3.648574626197184*^9}, {3.6485748273474083`*^9, 
+   3.648574885865453*^9}, {3.6485755607918115`*^9, 3.648575583262807*^9}, {
+   3.6485762372581997`*^9, 3.6485762696328006`*^9}, 3.6488459772593374`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"trials", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Flatten", "[", 
+      RowBox[{"StringSplit", "[", 
+       RowBox[{
+        RowBox[{"splitByComma", "[", 
+         RowBox[{"[", 
+          RowBox[{"i", ",", "j"}], "]"}], "]"}], ",", " ", 
+        RowBox[{
+        "RegularExpression", "[", 
+         "\"\<\\\\s?\\\\{?\\\\d{0,3}\\\\*False\\\\s\\\\+\\\\s\>\"", "]"}]}], 
+       "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "40"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"j", ",", "10"}], "}"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{
+  3.648575625878244*^9, {3.648575665046379*^9, 3.64857566644431*^9}, {
+   3.6485757190304003`*^9, 3.6485758385011196`*^9}, {3.648576309737562*^9, 
+   3.6485763271541815`*^9}, {3.648576375856682*^9, 3.648576392441747*^9}, {
+   3.6485768010063686`*^9, 3.64857685703876*^9}, 3.6485778765650573`*^9, {
+   3.6485781425565467`*^9, 3.6485781430278616`*^9}, {3.648578197132964*^9, 
+   3.648578199188335*^9}, {3.648578631424755*^9, 3.6485786318500366`*^9}, {
+   3.6485786676249084`*^9, 3.6485786694651346`*^9}, {3.6485787717203693`*^9, 
+   3.6485787858728113`*^9}, {3.648580664795561*^9, 3.6485806947225304`*^9}, 
+   3.6485807383466396`*^9}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"hitRate", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"N", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"GetHits", "[", 
+         RowBox[{"trials", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", "j", ",", "k"}], "]"}], "]"}], "]"}], "*", 
+        RowBox[{"10", "/", "4"}]}], ",", "3"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "40"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"j", ",", "10"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"k", ",", "11"}], "}"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"average", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Total", "[", 
+       RowBox[{"hitRate", "[", 
+        RowBox[{"[", 
+         RowBox[{"i", ",", "All", ",", " ", "j"}], "]"}], "]"}], " ", "]"}], 
+      "/", "10"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "40"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"j", ",", "11"}], "}"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<CrossValidaion.xls\>\"", ",", "average"}], "]"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.648580811344349*^9, 3.6485808210568295`*^9}, {
+   3.648580878240988*^9, 3.6485808826249094`*^9}, {3.6485809889268446`*^9, 
+   3.64858104347124*^9}, {3.6485824296541977`*^9, 3.6485824336378565`*^9}, {
+   3.6485826134678516`*^9, 3.648582614100274*^9}, 3.6488459639874816`*^9}]
+},
+WindowSize->{889, 816},
+WindowMargins->{{348, Automatic}, {60, Automatic}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (November 20, 2012)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 490, 12, 52, "Input"],
+Cell[1050, 34, 920, 22, 92, "Input"],
+Cell[1973, 58, 1599, 36, 112, InheritFromParent],
+Cell[3575, 96, 601, 15, 52, "Input"],
+Cell[4179, 113, 1439, 35, 92, "Input"],
+Cell[5621, 150, 1129, 29, 52, "Input"],
+Cell[6753, 181, 1255, 28, 72, "Input"],
+Cell[8011, 211, 1443, 40, 72, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
